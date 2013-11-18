@@ -1,4 +1,4 @@
 dotfiles
 ========
 
-My dotfiles
+This directory contains my dotfiles.
