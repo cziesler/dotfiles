@@ -2,7 +2,7 @@
 
 dir=~/git_repos/dotfiles
 olddir=~/dotfiles_old
-files="vimrc"
+files="vimrc profile bashrc aliases vim"
 
 echo -n "Creating $olddir for backup of existing dotfiles in ~ ..."
 mkdir -p $olddir
@@ -13,8 +13,9 @@ cd $dir
 echo "done"
 
 for file in $files; do
-  echo "Moving any existing dotfiles from ~ to $olddir"
-  mv ~/.$file $olddir
-  echo "Creating symlink to $file in ~."
+  echo
+  echo "Moving dotfile: ~/.$file to $olddir/.$file"
+  mv ~/.$file $olddir/
+  echo "Creating symlink from $dir/$file to ~/.$file"
   ln -s $dir/$file ~/.$file
 done
