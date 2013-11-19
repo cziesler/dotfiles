@@ -2,7 +2,7 @@
 
 dir=~/git_repos/dotfiles
 olddir=~/dotfiles_old
-files="vimrc profile bashrc aliases vim"
+files="vimrc gvimrc profile bashrc aliases vim zshrc zprofile"
 
 echo -n "Creating $olddir for backup of existing dotfiles in ~ ..."
 mkdir -p $olddir
