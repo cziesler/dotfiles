@@ -46,4 +46,4 @@ plugins=(git nyan perl osx latex)
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
-export PATH=$PATH:/Users/cody/nvm/v0.8.9/bin:/Users/cody/scripts/perl:/Users/cody/scripts/bash:/usr/local/mysql/bin:/opt/local/bin:/opt/local/sbin:/Users/cody/.rvm/gems/ruby-1.9.3-p286/bin:/Users/cody/.rvm/gems/ruby-1.9.3-p286@global/bin:/Users/cody/.rvm/rubies/ruby-1.9.3-p286/bin:/Users/cody/.rvm/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/texbin:/usr/local/bin
+export PATH=/usr/local/bin:$PATH:/Users/cody/nvm/v0.8.9/bin:/Users/cody/scripts/perl:/Users/cody/scripts/bash:/usr/local/mysql/bin:/opt/local/bin:/opt/local/sbin:/Users/cody/.rvm/gems/ruby-1.9.3-p286/bin:/Users/cody/.rvm/gems/ruby-1.9.3-p286@global/bin:/Users/cody/.rvm/rubies/ruby-1.9.3-p286/bin:/Users/cody/.rvm/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/texbin:/usr/local/bin
