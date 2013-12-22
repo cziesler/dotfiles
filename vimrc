@@ -8,6 +8,9 @@
 " General
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" Source pathogen first
+execute pathogen#infect()
+
 " Set how many lines of history for VIM to remember
 set history=700
 
@@ -35,6 +38,9 @@ set showcmd
 set wildmenu
 set wildmode=list:longest,full
 
+" Omnicomplete
+set omnifunc=syntaxcomplete#Complete
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " User Interface
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -57,9 +63,9 @@ set incsearch
 " Highlight search results
 set lazyredraw
 
-" Turn off annoying beaps
+" Turn off annoying beeps
 set noerrorbells
-set novisualbell
+set visualbell " Need this to stop beeping when hitting ESC
 
 " Show matching brackets
 set showmatch
@@ -84,7 +90,12 @@ syntax enable
 set guifont=DejaVu\ Sans\ Mono:h11
 
 " Set the color scheme
-colors smyck
+"colors smyck
+"colors solarized
+colorscheme molokai
+
+set background=dark
+"set background=light
 
 " All comments in the gui are italicized
 highlight Comment gui=italic
@@ -95,7 +106,6 @@ highlight Comment gui=italic
 "  "set colorcolumn=80
 "endif
 
-set background=dark
 
 " Set extra options when running in GUI mode
 if has("gui_running")
@@ -204,26 +214,26 @@ nnoremap <space> za
 " Theme rotating
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Function to rotate the color scheme
-let themeindex=0
-function! RotateColorTheme()
-  let y = -1
-  while y == -1
-    let colorstring = "#smyck#Monokai#blue#darkblue#default#delek#desert#elflord#evening#koehler#macvim#morning#murphy#pablo#peachpuff#ron#shine#slate#torte#zellner"
-    let x = match( colorstring, "#", g:themeindex )
-    let y = match( colorstring, "#", x + 1 )
-    let g:themeindex = x + 1
-    if y == -1
-      let g:themeindex = 0
-    else
-      let themestring = strpart(colorstring, x + 1, y - x - 1)
-      return ":colorscheme ".themestring
-    endif
-  endwhile
-endfunction
-
-" Rotate Color Scheme <F9>
-nnoremap <silent> <F9> :execute RotateColorTheme()<CR>:call SetStatusBar()<CR>
+"" " Function to rotate the color scheme
+"" let themeindex=0
+"" function! RotateColorTheme()
+""   let y = -1
+""   while y == -1
+""     let colorstring = "#smyck#Monokai#blue#darkblue#default#delek#desert#elflord#evening#koehler#macvim#morning#murphy#pablo#peachpuff#ron#shine#slate#torte#zellner"
+""     let x = match( colorstring, "#", g:themeindex )
+""     let y = match( colorstring, "#", x + 1 )
+""     let g:themeindex = x + 1
+""     if y == -1
+""       let g:themeindex = 0
+""     else
+""       let themestring = strpart(colorstring, x + 1, y - x - 1)
+""       return ":colorscheme ".themestring
+""     endif
+""   endwhile
+"" endfunction
+"" 
+"" " Rotate Color Scheme <F9>
+"" nnoremap <silent> <F9> :execute RotateColorTheme()<CR>:call SetStatusBar()<CR>
 
 " Get the color scheme name
 function! ShowColorSchemeName()
@@ -262,9 +272,17 @@ endfunction
 call SetStatusBar()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Latex stuff
+" Remap the leader
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let mapleader = ","
 
-map <silent> <leader>c :!pdflatex %<CR>
-map <silent> <leader>o :!open %<CR>
+map <leader>ev = :vs ~/.vimrc<CR>
+map <leader>sv = :source ~/.vimrc<CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Pathogen
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+map <leader>t :TagbarToggle<CR>
+map <leader>n :NERDTree<CR>
+
