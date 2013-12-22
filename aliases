@@ -5,6 +5,8 @@ alias ll='ls -lrt'
 alias clc='clear'
 alias grep="grep --color=auto"
 
+alias fixairplay="sudo kill `ps -ax | grep 'coreaudiod' | grep 'sbin' |awk '{print $1}'`"
+
 # external ip
 alias myip='dig +short myip.opendns.com @resolver1.opendns.com'
 
@@ -21,7 +23,7 @@ alias watch='~/scripts/csh/watch'
 # go folders
 alias go_proposal='cd ~/Dropbox/thesis/proposal'
 alias go_ieee='cd ~/Dropbox/thesis/journal_paper'
-alias go_src='cd /Volumes/Seagate\ 3TB/repos/nibp/src'
+alias go_src='cd /Volumes/Seagate\ 3TB/repos/cody-thesis/src'
 
 echo "Sourced ~/.aliases"
 
