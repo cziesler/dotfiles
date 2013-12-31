@@ -25,5 +25,8 @@ alias go_proposal='cd ~/Dropbox/thesis/proposal'
 alias go_ieee='cd ~/Dropbox/thesis/journal_paper'
 alias go_src='cd /Volumes/Seagate\ 3TB/repos/cody-thesis/src'
 
+# vnc
+alias vnc_lrpc='open vnc://CODY-LR-PC'
+
 echo "Sourced ~/.aliases"
 
