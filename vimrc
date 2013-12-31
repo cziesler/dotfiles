@@ -15,8 +15,7 @@ execute pathogen#infect()
 set history=700
 
 " Enable filetype plugins
-filetype plugin on
-filetype indent on
+filetype plugin indent on
 
 " Set autoread when a file is changed outside of VIM
 set autoread
@@ -92,7 +91,7 @@ set guifont=DejaVu\ Sans\ Mono:h11
 " Set the color scheme
 "colors smyck
 "colors solarized
-colorscheme molokai
+silent! colorscheme molokai
 
 set background=dark
 "set background=light
@@ -283,6 +282,5 @@ map <leader>sv = :source ~/.vimrc<CR>
 " Pathogen
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-map <leader>t :TagbarToggle<CR>
 map <leader>n :NERDTree<CR>
 
