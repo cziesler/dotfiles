@@ -30,6 +30,8 @@ alias go_src='cd /Volumes/Seagate\ 3TB/repos/cody-thesis/src'
 
 # vnc
 alias vnc_lrpc='open vnc://CODY-LR-PC'
+alias vnc_mba='open vnc://cziesler-mba.local'
+alias vnc_mbp='open vnc://cziesler-mbp.local'
 
 echo "Sourced .aliases"
 
