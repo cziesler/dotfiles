@@ -284,3 +284,4 @@ map <leader>sv = :source ~/.vimrc<CR>
 
 map <leader>n :NERDTree<CR>
 
+nmap <leader>D "=strftime('%a %b %d, %Y %T %Z')<CR>p
