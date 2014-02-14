@@ -141,6 +141,9 @@ set si
 " Wrap lines
 set wrap
 
+" One space after periods
+set nojoinspaces
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Moving around, tabs, windows, buffers
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
