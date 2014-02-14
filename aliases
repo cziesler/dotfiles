@@ -1,7 +1,7 @@
 # Aliases
 alias c.='cd ..'
 alias gvim='~/mvim -p'
-alias ll='ls -lrt'
+alias ll='ls -lrtA'
 alias clc='clear'
 alias grep="grep --color=auto"
 
