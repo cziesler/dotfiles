@@ -78,6 +78,14 @@ set number
 " Add a bit extra margin to the left
 set foldcolumn=1
 
+" Set the list characters
+set list
+set listchars=trail:…,tab:>-
+
+" Set the line wrap character
+set showcmd                   " In select mode, show number of lines/chars/etc
+set showbreak=↳\              " Add '↳ ' at linewraped lines
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Colors and Fonts
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -86,15 +94,16 @@ set foldcolumn=1
 syntax enable
 
 " Set the font
-set guifont=DejaVu\ Sans\ Mono:h11
+"set guifont=DejaVu\ Sans\ Mono:h11
+set guifont=Menlo\ Regular:h14
 
 " Set the color scheme
 "colors smyck
 "colors solarized
-silent! colorscheme molokai
-
-set background=dark
-"set background=light
+"silent! colorscheme winter
+"silent! colorscheme hybrid
+silent! colorscheme default
+set background=light
 
 " All comments in the gui are italicized
 highlight Comment gui=italic
@@ -130,7 +139,7 @@ set smarttab
 
 " 1 tab = 2 spaces
 set shiftwidth=2
-set tabstop=2
+set tabstop=8
 
 " Auto indent
 set ai
@@ -213,38 +222,40 @@ nnoremap <silent> <C-t> :tabnew<CR>
 nnoremap <space> za
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Theme rotating
+" Status Bar
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-"" " Function to rotate the color scheme
-"" let themeindex=0
-"" function! RotateColorTheme()
-""   let y = -1
-""   while y == -1
-""     let colorstring = "#smyck#Monokai#blue#darkblue#default#delek#desert#elflord#evening#koehler#macvim#morning#murphy#pablo#peachpuff#ron#shine#slate#torte#zellner"
-""     let x = match( colorstring, "#", g:themeindex )
-""     let y = match( colorstring, "#", x + 1 )
-""     let g:themeindex = x + 1
-""     if y == -1
-""       let g:themeindex = 0
-""     else
-""       let themestring = strpart(colorstring, x + 1, y - x - 1)
-""       return ":colorscheme ".themestring
-""     endif
-""   endwhile
-"" endfunction
-"" 
-"" " Rotate Color Scheme <F9>
-"" nnoremap <silent> <F9> :execute RotateColorTheme()<CR>:call SetStatusBar()<CR>
 
 " Get the color scheme name
 function! ShowColorSchemeName()
   try
     return g:colors_name
-  catch /^Vim:E121/
+  catch
     return "default
   endtry
 endfunction
+
+"" " Get the word count
+"" let g:word_count="<unknown>"
+"" function! WordCount()
+""   return g:word_count
+"" endfunction
+"" 
+"" function! UpdateWordCount()
+""   let lnum = 1
+""   let n = 0
+""   while lnum <= line('$')
+""     let n = n + len(split(getline(lnum)))
+""     let lnum = lnum + 1
+""   endwhile
+""   let g:word_count=n
+"" endfunction
+"" 
+"" augroup WordCounter
+""   au! CursorHold * call UpdateWordCount()
+""   au! CursorHoldI * call UpdateWordCount()
+"" augroup END
+"" 
+"" set updatetime=500
 
 " Set the status bar
 function! SetStatusBar()
@@ -265,6 +276,7 @@ function! SetStatusBar()
   set statusline+=%2*\ %y\ 
   set statusline+=%6*\ %h%m%r%w%=\ 
   set statusline+=%6*\ %{SyntaxItem()}\ 
+  "set statusline+=%7*\ Words:%{WordCount()}\ 
   set statusline+=%8*\ Col:%v\ 
   set statusline+=%9*\ Row:%l/%L\ 
   set statusline+=%3*\ %{ShowColorSchemeName()}\ 
@@ -278,7 +290,7 @@ call SetStatusBar()
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let mapleader = ","
 
-map <leader>ev = :vs ~/.vimrc<CR>
+map <leader>ev = :tabnew ~/.vimrc<CR>
 map <leader>sv = :source ~/.vimrc<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

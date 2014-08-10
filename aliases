@@ -1,3 +1,10 @@
+#===============================================================================
+# File Name:   .aliases
+# Author:      Cody Cziesler
+# Description: This dotfile sets up my aliases. This will work for bash and
+#              zsh.
+#===============================================================================
+
 # Aliases
 alias c.='cd ..'
 alias gvim='~/mvim -p'
@@ -5,7 +12,7 @@ alias ll='ls -lrtA'
 alias clc='clear'
 alias grep="grep --color=auto"
 
-alias fixairplay="sudo kill `ps -ax | grep 'coreaudiod' | grep 'sbin' |awk '{print $1}'`"
+alias fixairplay="sudo kill `ps -ax | grep 'coreaudiod' | grep 'sbin' | awk '{print $1}'`"
 
 # external ip
 alias myip='dig +short myip.opendns.com @resolver1.opendns.com'
@@ -26,12 +33,17 @@ alias watch='~/scripts/csh/watch'
 # go folders
 alias go_proposal='cd ~/Dropbox/thesis/proposal'
 alias go_ieee='cd ~/Dropbox/thesis/journal_paper'
+alias go_thesis='cd ~/Dropbox/thesis/thesis'
 alias go_src='cd /Volumes/Seagate\ 3TB/repos/cody-thesis/src'
 
 # vnc
 alias vnc_lrpc='open vnc://CODY-LR-PC'
+alias vnc_pc='open vnc://CODY-PC'
 alias vnc_mba='open vnc://cziesler-mba.local'
 alias vnc_mbp='open vnc://cziesler-mbp.local'
+alias vnc_mini='open vnc://ashleys-mini.local'
+alias vnc_home='open vnc://cziesler.duckdns.org'
 
-echo "Sourced .aliases"
+alias vnc_chazy='open vnc://uspfu-chazy.synaptics-inc.local'
 
+echo "Sourced ~/.aliases"
