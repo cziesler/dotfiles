@@ -153,6 +153,23 @@ set wrap
 " One space after periods
 set nojoinspaces
 
+" http://vimcasts.org/episodes/tidying-whitespace
+function! <SID>StripTrailingWhitespaces()
+  " Preparation: save last search, and cursor position.
+  let _s=@\ 
+  let l = line(".")
+  let c = col(".")
+  " Do the business
+  %s/\s\+$//e
+  " Cleanup: restore previous search history, and cursor position
+  let @/=_s
+  call cursor(l,c)
+endfunction
+
+" <F12> - remove trailing whitespace
+nnoremap <silent> <F12> :call <SID>StripTrailingWhitespaces()<CR>
+
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Moving around, tabs, windows, buffers
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

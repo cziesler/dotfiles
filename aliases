@@ -31,9 +31,7 @@ fi
 alias watch='~/scripts/csh/watch'
 
 # go folders
-alias go_proposal='cd ~/Dropbox/thesis/proposal'
-alias go_ieee='cd ~/Dropbox/thesis/journal_paper'
-alias go_thesis='cd ~/Dropbox/thesis/thesis'
+alias go_thesis='cd ~/git_repos/thesis'
 alias go_src='cd /Volumes/Seagate\ 3TB/repos/cody-thesis/src'
 
 # vnc
@@ -45,5 +43,9 @@ alias vnc_mini='open vnc://ashleys-mini.local'
 alias vnc_home='open vnc://cziesler.duckdns.org'
 
 alias vnc_chazy='open vnc://uspfu-chazy.synaptics-inc.local'
+
+man2pdf() {
+  man -t $1 | ps2pdf - $HOME/man/$1.pdf
+}
 
 echo "Sourced ~/.aliases"
