@@ -32,22 +32,6 @@ fi
 # watch
 alias watch='~/scripts/csh/watch'
 
-# go folders
-alias go_thesis='cd ~/git_repos/thesis'
-alias go_src='cd /Volumes/Seagate\ 3TB/repos/cody-thesis/src'
-
-# vnc
-alias vnc_lrpc='open vnc://CODY-LR-PC'
-alias vnc_pc='open vnc://CODY-PC'
-alias vnc_mba='open vnc://cziesler-mba.local'
-alias vnc_mbp='open vnc://cziesler-mbp.local'
-alias vnc_mini='open vnc://ashleys-mini.local'
-alias vnc_away='open vnc://cziesler.duckdns.org:4445'
-
-alias vnc_chazy='open vnc://uspfu-chazy.synaptics-inc.local'
-alias ssh_chazy='ssh -Y ccziesle@uspfu-chazy'
-alias ssh_pi='ssh -Y pi@CZIESLER-RPI'
-
 man2pdf() {
   man -t $1 | ps2pdf - $HOME/man/$1.pdf
 }
@@ -71,8 +55,8 @@ alias b2d="perl -e 'printf qq|%#d\n|, oct(shift)'"
 # Restart WiFi
 alias restart_wifi="networksetup -setairportpower en0 off; networksetup -setairportpower en0 on"
 
-# Wake On Lan
-alias wol_pc="wakeonlan 6C:F0:49:01:72:8C"
-alias wol_lrpc="wakeonlan B8:97:5A:0D:E2:12"
+if [ -e ~/.local_aliases ]; then
+  source ~/.local_aliases
+fi
 
 echo "Sourced ~/.aliases"
