@@ -8,7 +8,9 @@
 # Aliases
 alias c.='cd ..'
 alias gvim='~/mvim -p'
-alias ll='ls -lrtA'
+alias vim='/Applications/MacVim.app/Contents/MacOS/Vim -p'
+alias ls='gls --color -h --group-directories-first -G'
+alias ll='ls -lA'
 alias clc='clear'
 alias grep="grep --color=auto"
 
@@ -40,12 +42,37 @@ alias vnc_pc='open vnc://CODY-PC'
 alias vnc_mba='open vnc://cziesler-mba.local'
 alias vnc_mbp='open vnc://cziesler-mbp.local'
 alias vnc_mini='open vnc://ashleys-mini.local'
-alias vnc_home='open vnc://cziesler.duckdns.org'
+alias vnc_away='open vnc://cziesler.duckdns.org:4445'
 
 alias vnc_chazy='open vnc://uspfu-chazy.synaptics-inc.local'
+alias ssh_chazy='ssh -Y ccziesle@uspfu-chazy'
+alias ssh_pi='ssh -Y pi@CZIESLER-RPI'
 
 man2pdf() {
   man -t $1 | ps2pdf - $HOME/man/$1.pdf
 }
+
+# base-convert (Mastering Perl by brian d foy)
+alias d2h="perl -e 'printf qq|%#x\n|, int(shift)'"
+alias d2o="perl -e 'printf qq|%#o\n|, int(shift)'"
+alias d2b="perl -e 'printf qq|%#b\n|, int(shift)'"
+
+alias h2d="perl -e 'printf qq|%#d\n|, hex(shift)'"
+alias h2o="perl -e 'printf qq|%#o\n|, hex(shift)'"
+alias h2b="perl -e 'printf qq|%#b\n|, hex(shift)'"
+
+alias o2h="perl -e 'printf qq|%#x\n|, oct(shift)'"
+alias o2d="perl -e 'printf qq|%#d\n|, oct(shift)'"
+alias o2b="perl -e 'printf qq|%#b\n|, oct(shift)'"
+
+# Make sure to input w/ 0b before it
+alias b2d="perl -e 'printf qq|%#d\n|, oct(shift)'"
+
+# Restart WiFi
+alias restart_wifi="networksetup -setairportpower en0 off; networksetup -setairportpower en0 on"
+
+# Wake On Lan
+alias wol_pc="wakeonlan 6C:F0:49:01:72:8C"
+alias wol_lrpc="wakeonlan B8:97:5A:0D:E2:12"
 
 echo "Sourced ~/.aliases"
