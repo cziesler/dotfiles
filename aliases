@@ -29,9 +29,6 @@ then
   alias matlab='/Applications/MATLAB_R2011b.app/bin/matlab -nodesktop -nosplash'
 fi
 
-# watch
-alias watch='~/scripts/csh/watch'
-
 man2pdf() {
   man -t $1 | ps2pdf - $HOME/man/$1.pdf
 }
