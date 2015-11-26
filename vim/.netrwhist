@@ -1,5 +1,2 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =3
-let g:netrw_dirhist_1='/Volumes/Seagate 3TB/repos/cody-thesis/runs/peak_detect/2014_01_12_2145_HIST_AVGSEG_BESTFILES_NOLVQRS_DS150_AIF2_AIP4_AID4_AIQS1_AIQE1'
-let g:netrw_dirhist_2='/Users/cody/.oh-my-zsh'
-let g:netrw_dirhist_3='/Users/cody/git_repos/thesis'
+let g:netrw_dirhist_cnt =0
