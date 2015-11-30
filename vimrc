@@ -14,7 +14,7 @@ set nocompatible
 let mapleader=","              " remap the leader key
 
 "-------------------------------------------------------------------------------
-"  Pathogen
+" Pathogen
 "-------------------------------------------------------------------------------
 let g:colorizer_startup = 0    " disable colorizer
 
@@ -31,11 +31,13 @@ set visualbell        " remove the annoying beep
 set noerrorbells      " no error bells
 
 "-------------------------------------------------------------------------------
-"  Explorer Mode (:Explore)
+" Explorer Mode (:Explore)
 "-------------------------------------------------------------------------------
 let g:netrw_liststyle=3
 let g:netrw_winsize=50
-let g:netrw_browsex_viewer="gnome-open"
+if executable("gnome-open")
+  let g:netrw_browsex_viewer="gnome-open"
+endif
 
 "-------------------------------------------------------------------------------
 " GUI Stuff
