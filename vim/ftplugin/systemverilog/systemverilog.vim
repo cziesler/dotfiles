@@ -51,3 +51,20 @@ if exists(':TagbarToggle')
     \]
   \}
 endif
+
+" Matchit support
+if (loaded_matchit)
+  let b:match_words = '\<begin\>:\<end\>,'
+    \ . '\<module\>:\<endmodule\>,'
+    \ . '\<function\>:\<endfunction\>,'
+    \ . '\<class\>:\<endclass\>,'
+    \ . '\<case\>:\<endcase\>,'
+    \ . '\<fork\>:\<\(join\|join_none\|join_any\)\>,'
+    \ . '\<task\>:\<endtask\>,'
+    \ . '\<property\>:\<endproperty\>,'
+    \ . '\<interface\>:\<endinterface\>,'
+    \ . '\<ifdef\>:\<endif\>,'
+    \ . '\<specify\>:\<endspecify\>,'
+    \ . '\<generate\>:\<endgenerate\>,'
+    \ . '\<program\>:\<endprogram\>'
+endif

@@ -49,3 +49,6 @@
 [submodule "vim/bundle/systemverilog.vim2"]
 	path = vim/bundle/systemverilog.vim2
 	url = https://github.com/vim-scripts/systemverilog.vim.git
+[submodule "vim/bundle/matchit.zip"]
+	path = vim/bundle/matchit.zip
+	url = https://github.com/vim-scripts/matchit.zip.git
