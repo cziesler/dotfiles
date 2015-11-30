@@ -48,9 +48,13 @@ if has("gui_running")
   set guioptions+=r   " Keep right scrollbar
   set guioptions+=c   " Use console dialogs
 
+  " Set width/height
+  set lines=50 columns=100
+
   " Find a font that works
   for i in ['Pointfree\ 8', 'Pointfree:h10', 'Menlo\ Regular:h10']
     silent! execute 'set guifont=' . i
+    let i = substitute(i, "\\", "", "g")
     if &guifont == i
       break
     endif
@@ -67,7 +71,15 @@ endif
 "-------------------------------------------------------------------------------
 if has("printer")
   set printfont=courier:h8
-  set printoptions=paper:letter,duplex:long,syntax:y
+  set printoptions=paper:letter,duplex:long,syntax:a
+
+  " Function for printing
+  function! PrintMe()
+    let c=GetColorsName()
+    colorscheme print_bw
+    hardcopy
+    execute 'colorscheme ' . c
+  endfunction
 endif
 
 "-------------------------------------------------------------------------------
