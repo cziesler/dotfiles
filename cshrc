@@ -114,7 +114,7 @@ if ($?prompt) then
   #-----------------------------------------------
   # Source additional files
   #-----------------------------------------------
-  foreach i (~/.complete ~/.cshaliases ~/.path)
+  foreach i (~/.complete ~/.cshaliases ~/.path source ~/perl5/perlbrew/etc/cshrc)
     if (-e $i) then
       if ($?DEBUG) echo "  ... loading $i"
       source $i

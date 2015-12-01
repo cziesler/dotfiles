@@ -62,8 +62,8 @@ alias untar  'tar -kxvf  \!*'
 #-------------------------------------------------
 # Firefox
 #-------------------------------------------------
-if (-x ~/src/firefox/firefox) then
-  alias firefox '(chdir ~; ~/src/firefox/firefox \!*) >&/dev/null'
+if (-x ~/firefox/firefox) then
+  alias firefox '(chdir ~; ~/firefox/firefox \!*) >&/dev/null'
 endif
 
 # Watch
