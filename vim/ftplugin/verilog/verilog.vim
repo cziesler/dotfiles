@@ -1,8 +1,7 @@
 " Vim filetype plugin file
-" Language:	Verilog HDL
-" Maintainer:	Chih-Tsun Huang <cthuang@larc.ee.nthu.edu.tw>
-" Last Change:	Mon Sep  5 11:05:54 CST 2005 and 2006 April 30
-" URL:		http://larc.ee.nthu.edu.tw/~cthuang/vim/ftplugin/verilog.vim
+" Language:     Verilog
+" Adapted From: Chih-Tsun Huang <cthuang@larc.ee.nthu.edu.tw>
+" URL:          http://larc.ee.nthu.edu.tw/~cthuang/vim/ftplugin/verilog.vim
 
 " Only do this when not done yet for this buffer
 if exists("b:did_ftplugin")
@@ -23,17 +22,20 @@ setlocal fo-=t fo+=croqlm1
 " Set 'comments' to format dashed lists in comments.
 setlocal comments=sO:*\ -,mO:*\ \ ,exO:*/,s1:/*,mb:*,ex:*/,://
 
-" Format comments to be up to 78 characters long
+" Format comments to be up to 80 characters long
 if &textwidth == 0
-  setlocal tw=78
+  setlocal tw=80
 endif
 
-set cpo-=C
+setlocal cpo-=C
+
+" Indentations
+setlocal cindent
 
 " Win32 can filter files in the browse dialog
 if has("gui_win32") && !exists("b:browsefilter")
   let b:browsefilter = "Verilog Source Files (*.v)\t*.v\n" .
-	\ "All Files (*.*)\t*.*\n"
+    \ "All Files (*.*)\t*.*\n"
 endif
 
 " Let the matchit plugin know what items can be matched.
@@ -51,7 +53,8 @@ if exists("loaded_matchit")
     \ '\<specify\>:\<endspecify\>'
 endif
 
-" http://blogs.perl.org/users/ovid/2011/01/show-perl-subname-in-vim-statusline.html
+" http://blogs.perl.org/users/ovid/2011/01/ ...
+"   show-perl-subname-in-vim-statusline.html
 if has('perl')
 
 perl << EOP
@@ -88,7 +91,7 @@ endif
 
 if exists('loaded_matchit')
   let b:match_ignorecase=0
-  let b:match_words=  
+  let b:match_words=
     \ '\<begin\>:\<end\>,' .
     \ '\<if\>:\<else\>,' .
     \ '\<module\>:\<endmodule\>,' .
