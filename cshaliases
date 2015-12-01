@@ -1,0 +1,158 @@
+#===============================================================================
+# FILENAME:      .cshaliases
+# AUTHOR:        Cody Cziesler
+#===============================================================================
+
+# Short circuit exit
+if ($?CSHALIASES_LOADED) exit
+
+if ($?DEBUG) echo "Loading .cshaliases"
+
+#-------------------------------------------------
+# GNU Commands
+#-------------------------------------------------
+
+# ls after cd-ing
+alias cd 'cd \!*; ls'
+
+# Helpful aliases
+alias c.  'cd ..'
+alias clc 'clear'
+
+# Always recursively rm/cp
+alias rm  'rm -r'
+alias cp  'cp -r'
+
+# Make the parent directories if they don't exist
+alias mkdir 'mkdir -p'
+
+# ls version 5.97 doesn't support '--group-directories-first'
+if ( `/bin/ls --version | grep 'coreutils' | sed 's@^.*\s@@'` == 5.97 ) then
+  if ($?DEBUG) echo "  ... using basic ls alias"
+  alias ls 'ls -FXh --color=auto'
+else
+  if ($?DEBUG) echo "  ... using advanced ls alias"
+  alias ls 'ls -FXh --color=auto --group-directories-first \\
+    --time-style=long-iso'
+endif
+
+# grep
+alias grep 'grep --color'
+alias g 'grep -rw "\!*" *'
+
+# grep tarballs
+alias tgrep 'gzip -dc \!:2 | grep \!:1'
+
+# History aliases
+alias h 'history'
+
+# open gvim with tabs
+alias gvim 'gvim -p'
+
+# file size
+alias fs 'stat -c "%s bytes"'
+
+# Show largest files
+alias ducks 'du -ckhs * | sort -rn | head -11'
+
+# Backup commands
+alias backup 'tar -czvf \!*.`date +%Y%m%d-%H%M%S`.tgz \!*'
+alias untar  'tar -kxvf  \!*'
+
+#-------------------------------------------------
+# Firefox
+#-------------------------------------------------
+if (-x ~/src/firefox/firefox) then
+  alias firefox '(chdir ~; ~/src/firefox/firefox \!*) >&/dev/null'
+endif
+
+# Watch
+if (-x /usr/bin/watch) then
+  alias watch '/usr/bin/watch'
+endif
+
+# restart taskbar
+if (`where plasma-desktop` != "") then
+  alias restart_taskbar 'killall plasma-desktop && plasma-desktop'
+endif
+
+# open
+if (`where gnome-open` != "") then
+  alias ] 'gnome-open'
+endif
+
+# VNC
+if (`where x11vnc` != "") then
+  alias xvnc 'x11vnc -usepw -display ":0" -forever -loop -quiet'
+endif
+
+#-------------------------------------------------
+# Base Conversions
+#-------------------------------------------------
+
+# base-convert (Mastering Perl by brian d foy)
+alias d2h "perl -e 'printf qq|%#x\n|, int(shift)'"
+alias d2o "perl -e 'printf qq|%#o\n|, int(shift)'"
+alias d2b "perl -e 'printf qq|%#b\n|, int(shift)'"
+
+alias h2d "perl -e 'printf qq|%#d\n|, hex(shift)'"
+alias h2o "perl -e 'printf qq|%#o\n|, hex(shift)'"
+alias h2b "perl -e 'printf qq|%#b\n|, hex(shift)'"
+
+alias o2h "perl -e 'printf qq|%#x\n|, oct(shift)'"
+alias o2d "perl -e 'printf qq|%#d\n|, oct(shift)'"
+alias o2b "perl -e 'printf qq|%#b\n|, oct(shift)'"
+
+# Make sure to input w/ 0b before it
+alias b2d "perl -e 'printf qq|%#d\n|, oct(shift)'"
+
+#-------------------------------------------------
+# Internet stuff
+#-------------------------------------------------
+
+# Query Wikipedia
+alias wiki 'dig +short txt \!*.wp.dg.cx'
+
+# Serve current directory at http://$HOSTNAME:8000
+alias pyhttp 'python -m SimpleHTTPServer'
+
+# Convert output of command to an image
+if (`where convert` != "") then
+  alias saveimg '\!* | convert -font "Liberation-Mono-Regular" \\
+    label:@- ~/convert.png'
+endif
+
+# Notifications/emails
+if (`where notify-send` != "") then
+  alias notifyme 'notify-send \!*'
+endif
+alias emailme  'cat \!* | vim - +Tohtml "+w email.html" "+qall!"'
+
+# Create a PDF of the man page
+alias man2pdf 'man -t \!:1 | ps2pdf - $HOME/man/\!:1.pdf'
+if (`where enscript` != "") then
+  alias txt2pdf '\!* | enscript -B -o - | ps2pdf - output.pdf'
+endif
+alias helpcommand 'man'
+
+# Font aliases
+#   http://kaushalmodi.github.io/2014/03/27/installing-custom-fonts-in-linux/
+alias fontsavail   'fc-list -f "%{family}\n" | sort -u'
+alias fontsrefresh 'fc-cache -fv'
+
+#-------------------------------------------------
+# git
+#-------------------------------------------------
+alias git_log 'git log --graph --full-history --all --color \\
+  --date=short --pretty=format:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%ad %s"'
+
+#-------------------------------------------------
+# Source local aliases if exists
+#-------------------------------------------------
+if (-e ~/.local_aliases) then
+  if ($?DEBUG) echo "  ... loading ~/.local_aliases"
+  source ~/.local_aliases
+endif
+
+setenv CSHALIASES_LOADED
+if ($?DEBUG) echo "  ... done loading .cshaliases"
