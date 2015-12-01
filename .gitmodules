@@ -52,6 +52,8 @@
 [submodule "vim/bundle/matchit.zip"]
 	path = vim/bundle/matchit.zip
 	url = https://github.com/vim-scripts/matchit.zip.git
+        ignore = untracked
 [submodule "vim/bundle/vim-fontzoom"]
 	path = vim/bundle/vim-fontzoom
 	url = https://github.com/thinca/vim-fontzoom.git
+        ignore = untracked
