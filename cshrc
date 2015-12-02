@@ -114,7 +114,7 @@ if ($?prompt) then
   #-----------------------------------------------
   # Source additional files
   #-----------------------------------------------
-  foreach i (~/.complete ~/.cshaliases ~/.path source ~/perl5/perlbrew/etc/cshrc)
+  foreach i (~/.complete ~/.cshaliases ~/.path)
     if (-e $i) then
       if ($?DEBUG) echo "  ... loading $i"
       source $i
@@ -124,10 +124,10 @@ if ($?prompt) then
   #-----------------------------------------------
   # xbindkeys
   #-----------------------------------------------
-  if (-x $HOME/xbindkeys/bin/xbindkeys) then
+  if (`where xbindkeys` != "") then
     if ($?DEBUG) echo "  ... loading xbindkeys"
     pkill xbindkeys
-    $HOME/xbindkeys/bin/xbindkeys
+    xbindkeys
   endif
 
 endif

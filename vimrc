@@ -90,7 +90,7 @@ endif
 set wildmenu                   " Visual autocomplete for command menu
 set wildmode=list:longest,full " First list all options, then go through them.
 set scrolloff=3                " Keep 3 lines when scrolling
-set sidescrolloff=16           " Keep 16 columns when side scrolling
+set sidescrolloff=3            " Keep 3 columns when side scrolling
 set nostartofline              " Don't jump to the start of line when paging
 set showcmd                    " In select mode, show number of lines/chars/etc
 set showbreak=↳\               " Add '↳ ' at linewraped lines

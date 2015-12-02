@@ -59,13 +59,6 @@ alias ducks 'du -ckhs * | sort -rn | head -11'
 alias backup 'tar -czvf \!*.`date +%Y%m%d-%H%M%S`.tgz \!*'
 alias untar  'tar -kxvf  \!*'
 
-#-------------------------------------------------
-# Firefox
-#-------------------------------------------------
-if (-x ~/firefox/firefox) then
-  alias firefox '(chdir ~; ~/firefox/firefox \!*) >&/dev/null'
-endif
-
 # Watch
 if (-x /usr/bin/watch) then
   alias watch '/usr/bin/watch'
