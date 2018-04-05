@@ -21,6 +21,9 @@ syn match   tl_plarg              contained /+\?\<[A-Z_a-z0-9.=]\+\>/
 syn region  tl_vlogdef_line       oneline start=/^\s\+vlogdef/ end=/\n/                                       contains=tl_vlogdef,tl_keyword,tl_comment,tl_colon
 syn match   tl_vlogdef            contained /\<[A-Za-z0-9_.=]\+\>/
 
+syn region  tl_vlibdir_line       oneline start=/^\s\+vlibdir/ end=/\n/                                       contains=tl_vlibdir,tl_keyword,tl_comment,tl_colon
+syn match   tl_vlibdir            contained /\<[A-Za-z0-9_.=]\+\>/
+
 syn region  tl_casmdef_line       oneline start=/^\s\+casmdef/ end=/\n/                                       contains=tl_casmdef,tl_keyword,tl_comment,tl_colon
 syn match   tl_casmdef            contained /-\<D[A-Za-z0-9_.=]\+\>/
 
@@ -39,7 +42,7 @@ syn region  tl_datasubdir_line    oneline start=/^\s\+\<datasubdir\>/ end=/\n/  
 
 syn region  tl_firmware_line      oneline start=/^\s\+\(firmware\|rom_code\)/ end=/\n/                        contains=tl_files,tl_keyword,tl_comment,tl_colon
 
-syn region  tl_reg_test_name_line oneline start=/^\s*\<\(testname\|common\|regname\)\> *:/ end=/\n/           contains=tl_comment,tl_function_start,tl_keyword,tl_name,tl_colon
+syn region  tl_reg_test_name_line oneline start=/^\s*\<\(testname\|common\|regname\)\>\s*:/ end=/\n/           contains=tl_comment,tl_function_start,tl_keyword,tl_name,tl_colon
 syn keyword tl_function_start     contained regname common testname
 syn match   tl_name               contained /\<[A-Za-z0-9_]\+\>/
 syn keyword tl_function_end       end_regname end_common end
@@ -60,11 +63,11 @@ syn keyword tl_keyword            flash_code hex_file fw_incdirs
 syn keyword tl_keyword            sim_time sys_presim sys_postsim rpt_testname
 syn keyword tl_keyword            sys_precom sys_postcom sys_initial
 syn keyword tl_keyword            ams_config fwsubdir sim_mode testbench testseed
-syn keyword tl_keyword            vlogdef casmdef vhdlan_sw vlogan_sw vcs_sw sim_sw
+syn keyword tl_keyword            vlibdir vlogdef casmdef vhdlan_sw vlogan_sw vcs_sw sim_sw
 syn keyword tl_keyword            exp_err_cnt exp_fail_cnt exp_viol_cnt exp_warn_cnt
 syn keyword tl_keyword            errs_ok warns_ok viols_ok fails_ok tmpviols_ok
 syn keyword tl_keyword            reqd_msgs exc_testname waves fsdb
-syn keyword tl_keyword            ctl_params reg_common xactors
+syn keyword tl_keyword            ctl_params reg_common xactors owner
 syn keyword tl_keyword            c_comp_sw fw_comp_sw asm_comp_sw
 syn keyword tl_keyword            tname_prefix simulator pp_script
 

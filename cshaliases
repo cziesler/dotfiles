@@ -3,9 +3,6 @@
 # AUTHOR:        Cody Cziesler
 #===============================================================================
 
-# Short circuit exit
-if ($?CSHALIASES_LOADED) exit
-
 if ($?DEBUG) echo "Loading .cshaliases"
 
 #-------------------------------------------------
@@ -53,7 +50,7 @@ alias gvim 'gvim -p'
 alias fs 'stat -c "%s bytes"'
 
 # Show largest files
-alias ducks 'du -ckhs * | sort -rn | head -11'
+alias ducks 'du -cks * | sort -rn | head -11'
 
 # Backup commands
 alias backup 'tar -czvf \!*.`date +%Y%m%d-%H%M%S`.tgz \!*'
@@ -147,5 +144,4 @@ if (-e ~/.local_aliases) then
   source ~/.local_aliases
 endif
 
-setenv CSHALIASES_LOADED
 if ($?DEBUG) echo "  ... done loading .cshaliases"

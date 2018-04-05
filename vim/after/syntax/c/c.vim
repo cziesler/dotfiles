@@ -6,10 +6,5 @@
 " Description:      Adds additional keywords for Synaptics firmware.
 "==============================================================================
 
-syn keyword cType          uint16 uint32 BITFIELD
-syn keyword cStorageClass  ATTR_THREAD ATTR_INLINE ATTR_ANYROM clobber
-
-" Add to path
-if isdirectory('../c_env/chip_include')
-  set path+=../c_env/chip_include
-endif
+syn keyword cType          uint16 uint32 BITFIELD uint16_t uint32_t void
+syn keyword cStorageClass  ATTR_THREAD ATTR_INLINE ATTR_ANYROM

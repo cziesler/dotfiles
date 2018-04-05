@@ -14,6 +14,8 @@ endif
 let s:cpo_save = &cpo
 set cpo&vim
 
+set tabstop=8
+
 syn case ignore
 
 syn match disOffset     "[+-]"

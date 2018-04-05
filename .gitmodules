@@ -57,3 +57,15 @@
 	path = vim/bundle/vim-fontzoom
 	url = https://github.com/thinca/vim-fontzoom.git
         ignore = untracked
+[submodule "vim/bundle/Mark--Karkat"]
+	path = vim/bundle/Mark--Karkat
+	url = https://github.com/vim-scripts/Mark--Karkat.git
+[submodule "vim/bundle/Alduin"]
+	path = vim/bundle/Alduin
+	url = https://github.com/AlessandroYorba/Alduin.git
+[submodule "vim/bundle/vim-themes"]
+	path = vim/bundle/vim-themes
+	url = https://github.com/mswift42/vim-themes.git
+[submodule "vim/bundle/semantic-highlight.vim"]
+	path = vim/bundle/semantic-highlight.vim
+	url = https://github.com/jaxbot/semantic-highlight.vim.git

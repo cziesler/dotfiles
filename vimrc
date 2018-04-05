@@ -24,6 +24,13 @@ silent! call pathogen#infect() " infect! oh no!
 " Tagbar
 nmap <leader>tr :TagbarToggle<CR>
 
+" signify
+let g:signify_vcs_cmds = {
+  \ 'sos': '~/scripts/sosdiff.pl %f',
+  \ 'git': 'git diff --no-color --no-ext-diff -U0 -- %f',
+  \ }
+let g:signify_vcs_list = [ 'sos', 'git' ]
+
 "-------------------------------------------------------------------------------
 " Basic Stuff
 "-------------------------------------------------------------------------------
@@ -54,7 +61,7 @@ if has("gui_running")
   set lines=50 columns=100
 
   " Find a font that works
-  for i in ['Pointfree\ 8', 'Pointfree:h10', 'Menlo\ Regular:h10']
+  for i in ['Pointfree\ 6', 'Pointfree:h6', 'Menlo\ Regular:h6']
     silent! execute 'set guifont=' . i
     let i = substitute(i, "\\", "", "g")
     if &guifont == i
@@ -95,6 +102,8 @@ set nostartofline              " Don't jump to the start of line when paging
 set showcmd                    " In select mode, show number of lines/chars/etc
 set showbreak=↳\               " Add '↳ ' at linewraped lines
 
+set tabpagemax=500             " allow up to 100 tabs to open from command line
+
 set list                       " Enable list characters
 set listchars=tab:→\ ,trail:…,extends:>,precedes:<
 nmap <leader>l :setlocal list!<CR>
@@ -119,10 +128,9 @@ nnoremap <leader>w :set wrap!<CR>
 "-------------------------------------------------------------------------------
 set expandtab                 " insert spaces when tab is pressed
 set softtabstop=2             " number of spaces that a <tab> counts for
+set tabstop=2                 " width of <tab> character
 set shiftwidth=2              " number of spaces to use for each step of indent
 set shiftround                " >, < limited to multiples of shiftwidth
-
-set tabpagemax=100            " allow up to 100 tabs to open from command line
 
 "-------------------------------------------------------------------------------
 " Searching Stuff
@@ -131,8 +139,8 @@ set incsearch                 " enable incremental search
 set hlsearch                  " enable highlight search
 set showmatch                 " flash opposite bracket on insertion
 
-set ignorecase                " ignore cases when searching
-set smartcase                 " unless asked for
+"set ignorecase                " ignore cases when searching
+"set smartcase                 " unless asked for
 
 set nojoinspaces              " one space between periods
 
@@ -179,8 +187,18 @@ end
 " Keep search pattern in center of the screen
 nmap n  nzz
 nmap N  Nzz
-nmap *  *zz
-nmap #  #zz
+if empty("g:loaded_mark") " For Mark--Karkat
+  nmap * *zz
+  nmap # #zz
+endif
+
+" <F8> - remove highlighting
+function! RemoveHL()
+  if !empty("g:loaded_mark") " For Mark--Karkat
+    call mark#ClearAll()
+  endif
+endfunction
+map <F8> :call RemoveHL()<CR>:nohlsearch<CR>
 
 " Edit/Source my ~/.vimrc
 nnoremap <leader>ev :tabnew $MYVIMRC<CR>
@@ -213,9 +231,6 @@ nmap <C-n><C-n> :setlocal number!<CR>
 if !empty(glob("$VIMRUNTIME/syntax/hitest.vim"))
   map <F5>  :source $VIMRUNTIME/syntax/hitest.vim<CR>
 endif
-
-" <F8> - remove highlighting
-map <F8>  :nohlsearch<CR>
 
 " <F10> - launch terminal
 if executable("konsole")
@@ -281,6 +296,14 @@ function! PostColorscheme()
   highlight User9 guifg=#000000 guibg=#5b8484
   highlight User0 guifg=#000000 guibg=#7b9c9c
 
+  highlight Search1 guibg=#FF0000
+  highlight Search2 guibg=#FF7700
+  highlight Search3 guibg=#FFFF00
+  highlight Search4 guibg=#00FF00
+  highlight Search5 guibg=#0000FF
+  highlight Search6 guibg=#4B0082
+  highlight Search7 guibg=#8F00FF
+
   " Highlights (do this after loading colors)
   highlight clear    SpellBad
   highlight SpellBad gui=undercurl guisp=red cterm=underline
@@ -312,3 +335,13 @@ endif
 " Abbreviations
 "-------------------------------------------------------------------------------
 iabbrev <expr> (date) strftime("%c")
+
+"-------------------------------------------------------------------------------
+" Check for local vimrc
+"-------------------------------------------------------------------------------
+let b:thisdir=expand("%:p:h")
+let b:vim=b:thisdir."/.vim.custom"
+if filereadable(b:vim)
+  echo "Sourcing ".b:vim
+  execute "source ".b:vim
+endif

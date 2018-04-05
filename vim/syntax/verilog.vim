@@ -15,12 +15,13 @@ syntax keyword verilogKeyword        tri0 tri1 tri trireg
 syntax keyword verilogKeyword        wand wor triand trior
 syntax keyword verilogKeyword        defparam
 syntax keyword verilogKeyword        begin end
+syntax keyword verilogKeyword        generate endgenerate genvar
 syntax keyword verilogKeyword        if else case casex casez default endcase
 syntax keyword verilogKeyword        forever repeat while for
 
 syntax keyword verilogStorageClass   input output inout reg wire
 syntax keyword verilogStorageClass   integer real parameter event
-syntax keyword verilogStorageClass   int logic bit byte time
+syntax keyword verilogStorageClass   int logic bit byte time signed
 
 syntax region  verilogString         oneline start=+"+  skip=+\\\\\|\\"+  end=+"+
 
