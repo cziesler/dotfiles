@@ -7,8 +7,8 @@
 
 # Aliases
 alias c.='cd ..'
-alias gvim='~/mvim -p'
-alias vim='/Applications/MacVim.app/Contents/MacOS/Vim -p'
+#alias gvim='~/mvim -p'
+#alias vim='/Applications/MacVim.app/Contents/MacOS/Vim -p'
 alias ls='gls --color -h --group-directories-first -G'
 alias ll='ls -lA'
 alias clc='clear'
