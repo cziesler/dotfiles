@@ -53,14 +53,6 @@ if ($?prompt) then
     set visiblebell
   endif
 
-  # Set printer
-  foreach i (fairport brighton printer-hp)
-    if (`lpstat -p | cut -d' ' -f2 | grep $i` != "") then
-      setenv PRINTER $i
-      break
-    endif
-  end
-
   # Set editor
   foreach i (gvim vim vi)
     if (`where $i` != "") then
@@ -71,9 +63,6 @@ if ($?prompt) then
 
   # Set language
   setenv LANG en_US.UTF-8
-
-  # Set environmental variables
-  setenv PKG_CONFIG_PATH ~/lib/pkgconfig
 
   #-----------------------------------------------
   # SOS Environmental Variables
