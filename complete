@@ -1,0 +1,64 @@
+if ($?DEBUG) echo "Loading .complete"
+
+# Some useful links:
+#   https://opensource.apple.com/source/tcsh/tcsh-67/tcsh/complete.tcsh
+#   https://hea-www.harvard.edu/~fine/Tech/tcsh.html
+
+#-------------------------------------------------
+# Directories
+#-------------------------------------------------
+complete cd           'p/1/d/'
+complete chdir        'p/1/d/'
+complete pushd        'p/1/d/'
+complete popd         'p/1/d/'
+
+#-------------------------------------------------
+# Commands
+#-------------------------------------------------
+complete which        'p/*/c/'
+complete where        'p/*/c/'
+complete man          'p/1/c/'
+
+#-------------------------------------------------
+# Completions
+#-------------------------------------------------
+complete complete     'p/1/X/'
+complete uncomplete   'p/*/X/'
+
+#-------------------------------------------------
+# Environmental variables
+#-------------------------------------------------
+complete setenv       'p/1/e/' 'c/*:/f/'
+
+#-------------------------------------------------
+# Aliases
+#-------------------------------------------------
+complete alias        'p/1/a/'
+complete unalias      'p/*/a/'
+
+#-------------------------------------------------
+# Key bindings
+#-------------------------------------------------
+complete bindkey      'C/*/b/'
+
+#-------------------------------------------------
+# svn
+#-------------------------------------------------
+set svnlist = ( \
+  add blame cat changelist checkout cleanup commit copy delete \
+  diff export help import info list lock log merge mergeinfo mkdir move \
+  propdel propedit propget proplist propset resolve resolved revert \
+  status switch unlock update)
+
+complete svn \
+  'p/1/$svnlist/' \
+  'n/help/$svnlist/' \
+  'n@ls@(file:/// svn+ssh:// svn://)@@'
+
+#-------------------------------------------------
+# ssh
+#-------------------------------------------------
+set hosts=(`cat ~/.ssh/known_hosts | sed -e 's/,.*//' -e 's/ .*//'`)
+complete ssh 'p/1/$hosts/'
+
+if ($?DEBUG) echo "  ... done loading .complete"
