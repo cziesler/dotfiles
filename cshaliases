@@ -52,6 +52,9 @@ alias fs 'stat -c "%s bytes"'
 # Show largest files
 alias ducks 'du -cks * | sort -rn | head -11'
 
+# ps, view full username
+alias psall 'ps axo user:20,pid,pcpu,pmem,vsz,rss,tty,stat,start,time,comm'
+
 # Backup commands
 alias backup 'tar -czvf \!*.`date +%Y%m%d-%H%M%S`.tgz \!*'
 alias untar  'tar -kxvf  \!*'
@@ -75,6 +78,11 @@ endif
 if (`where x11vnc` != "") then
   alias xvnc 'x11vnc -usepw -display ":0" -forever -loop -quiet'
 endif
+
+# VNC Aliases
+alias vncstart  'vncserver :16 -name "$HOSTNAME" -geometry 3840x2160'
+alias vncstart1 'vncserver :\!:1 -name "$HOSTNAME" -geometry 3840x2160'
+alias vnckill   'vncserver -kill :16'
 
 #-------------------------------------------------
 # Base Conversions
