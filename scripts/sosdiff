@@ -1,0 +1,22 @@
+#!/usr/bin/env perl
+
+use strict;
+use warnings;
+
+use File::Temp qw(tempfile);
+
+my $file = shift;
+
+# Get a temp file to export to
+my (undef, $export_file) = tempfile(DIR=>"$ENV{HOME}/.tmp/");
+
+print "$export_file\n";
+
+# Export the file
+(system("soscmd exportrev -out$export_file $file > /dev/null") == 0) or exit;
+
+# Print the diff
+print `diff -U0 --ignore-all-space $export_file $file`;
+
+# Delete the exported file
+unlink $export_file;
