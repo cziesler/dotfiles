@@ -4,11 +4,6 @@
 "-------------------------------------------------------------------------------
 
 "-------------------------------------------------------------------------------
-" Use vim defaults, not vi
-"-------------------------------------------------------------------------------
-set nocompatible
-
-"-------------------------------------------------------------------------------
 " Leader key (comma)
 "-------------------------------------------------------------------------------
 let mapleader=","              " remap the leader key
@@ -16,35 +11,24 @@ let mapleader=","              " remap the leader key
 "-------------------------------------------------------------------------------
 " Pathogen
 "-------------------------------------------------------------------------------
-let g:colorizer_startup = 0    " disable colorizer
-
 let g:pathogen_disabled = []   " disabled bundles
 silent! call pathogen#infect() " infect! oh no!
 
-" Tagbar
-nmap <leader>tr :TagbarToggle<CR>
-
 " signify
 let g:signify_vcs_cmds = {
-  \ 'sos': '~/scripts/sosdiff.pl %f',
-  \ 'git': 'git diff --no-color --no-ext-diff -U0 -- %f',
+  \ 'sos'  : '$HOME/scripts/sosdiff %f',
+  \ 'git'  : 'git diff --no-color --no-ext-diff -U0 -- %f',
+  \ 'svn'  : 'svn diff --diff-cmd %d -x "-U0 --ignore-all-space" -- %f',
   \ }
-let g:signify_vcs_list = [ 'sos', 'git' ]
+let g:signify_vcs_cmds_diffmode = {
+  \ 'sos'  : '$HOME/scripts/sosdiff %f',
+  \ }
 
 "-------------------------------------------------------------------------------
 " Basic Stuff
 "-------------------------------------------------------------------------------
 set visualbell        " remove the annoying beep
 set noerrorbells      " no error bells
-
-"-------------------------------------------------------------------------------
-" Explorer Mode (:Explore)
-"-------------------------------------------------------------------------------
-let g:netrw_liststyle=3
-let g:netrw_winsize=50
-if executable("gnome-open")
-  let g:netrw_browsex_viewer="gnome-open"
-endif
 
 "-------------------------------------------------------------------------------
 " GUI Stuff
@@ -71,24 +55,18 @@ if has("gui_running")
 
   silent! colorscheme dracula
 else
-  set t_Co=256
-  silent! colorscheme spacegray
-endif
+  if exists('+termguicolors')
+    set termguicolors
+    set t_Co=256
+    let &t_8f = "\<Esc>[38:2:%lu:%lu:%lum"
+    let &t_8b = "\<Esc>[48:2:%lu:%lu:%lum"
 
-"-------------------------------------------------------------------------------
-" Printing Stuff
-"-------------------------------------------------------------------------------
-if has("printer")
-  set printfont=courier:h8
-  set printoptions=paper:letter,duplex:long,syntax:a
+    silent! colorscheme default
+  else
+    set t_Co=256
 
-  " Function for printing
-  function! PrintMe()
-    let c=GetColorsName()
-    colorscheme print_bw
-    hardcopy
-    execute 'colorscheme ' . c
-  endfunction
+    silent! colorscheme dracula
+  endif
 endif
 
 "-------------------------------------------------------------------------------
@@ -111,9 +89,7 @@ nmap <leader>l :setlocal list!<CR>
 set lazyredraw                 " don't redraw when executing commands
 set ttyfast                    " improve redrawing smoothness
 
-if exists("syntax_on")
-  syntax enable                " Enable syntax
-endif
+syntax enable                  " Enable syntax
 
 set shortmess+=I               " Disable Uganda message
 set report=0                   " Always display number of lines changes by cmd
@@ -150,14 +126,31 @@ set nojoinspaces              " one space between periods
 set autochdir                 " automagically change the cwd to dir of file
 
 "-------------------------------------------------------------------------------
+" Disable X clipboard
+"-------------------------------------------------------------------------------
+set clipboard=exclude:.*      " disable clipboard on all terminals
+
+"-------------------------------------------------------------------------------
 " Backup Stuff
 "-------------------------------------------------------------------------------
 set backup                    " enable backups
-set backupdir=~/.vim/backup   " backup directory
+set backupdir=~/.vim/backup// " backup directory
+
+if !isdirectory($HOME . '/.vim/backup')
+  call mkdir($HOME . '/.vim/backup', 'p')
+endif
 
 if has("+persistent_undo")
   set undofile                " use undo file
-  set undodir=~/.vim/undo     " undo directory
+  set undodir=~/.vim/undo//   " undo directory
+  if !isdirectory($HOME . '/.vim/undo')
+    call mkdir($HOME . '/.vim/undo', 'p')
+  endif
+endif
+
+set directory=~/.vim/swp//
+if !isdirectory($HOME . '/.vim/swp')
+  call mkdir($HOME . '/.vim/swp', 'p')
 endif
 
 "-------------------------------------------------------------------------------
@@ -181,20 +174,35 @@ if has("spell")
 end
 
 "-------------------------------------------------------------------------------
+" Backspace
+"-------------------------------------------------------------------------------
+set backspace=indent,eol,start " allow backspace over indent, eol, and start of insert
+
+"-------------------------------------------------------------------------------
+" Diff Options
+"-------------------------------------------------------------------------------
+set diffopt+=iwhite           " Ignore whitespace changes
+
+"-------------------------------------------------------------------------------
+" File encoding
+"-------------------------------------------------------------------------------
+set fileencodings=ucs-bom,utf-8,sjis,default
+
+"-------------------------------------------------------------------------------
 " Remaps
 "-------------------------------------------------------------------------------
 
 " Keep search pattern in center of the screen
 nmap n  nzz
 nmap N  Nzz
-if empty("g:loaded_mark") " For Mark--Karkat
+if !(&runtimepath =~ 'Mark--Karkat')
   nmap * *zz
   nmap # #zz
 endif
 
 " <F8> - remove highlighting
 function! RemoveHL()
-  if !empty("g:loaded_mark") " For Mark--Karkat
+  if &runtimepath =~ 'Mark--Karkat'
     call mark#ClearAll()
   endif
 endfunction
@@ -205,16 +213,17 @@ nnoremap <leader>ev :tabnew $MYVIMRC<CR>
 nnoremap <leader>sv :source $MYVIMRC<CR>
 
 " SOS Checkout/Checkin files
-if executable("soscmd")
-  nnoremap <leader>co :!soscmd co %<CR>
-  nnoremap <leader>ci :!soscmd ci %<CR>
-  nnoremap <leader>d  :!soscmd diff -gui %<CR>
-  nnoremap <leader>s  :!soscmd status %<CR>
-endif
+"   Now using sos plugin
+"if executable("soscmd")
+"  nnoremap <leader>co :!soscmd co %<CR>
+"  nnoremap <leader>ci :!soscmd ci %<CR>
+"  nnoremap <leader>d  :!soscmd diff -gui %<CR>
+"  nnoremap <leader>s  :!soscmd status %<CR>
+"endif
 
 " Header
-if !empty(glob("~/scripts/add_header.pl"))
-  nnoremap <leader>h  :!add_header.pl %<CR>
+if !empty(glob("$HOME/scripts/add_header.pl"))
+  nnoremap <leader>h  :!$HOME/scripts/add_header.pl %<CR>
 endif
 
 " Directory explorer
@@ -255,6 +264,16 @@ function! <SID>StripTrailingWhitespaces()
 endfunction
 nnoremap <silent> <F12> :call <SID>StripTrailingWhitespaces()<CR>
 
+" <F6> - toggle color scheme to a light version for copying
+function! ToggleColorScheme()
+  if (GetColorsName() =~ "github")
+    colorscheme nord
+  else
+    colorscheme github-old
+  endif
+endfunc
+map <silent> <F6> :call ToggleColorScheme()<CR>
+
 "-------------------------------------------------------------------------------
 " Status bar
 "-------------------------------------------------------------------------------
@@ -285,16 +304,16 @@ endfunction
 "   http://stackoverflow.com/questions/5375240/a-more-useful-statusline-in-vim
 function! PostColorscheme()
   " Colors
-  highlight User1 guifg=#000000 guibg=#808080
-  highlight User2 guifg=#000000 guibg=#7fb2e5
-  highlight User3 guifg=#000000 guibg=#7aa6c7
-  highlight User4 guifg=#000000 guibg=#7fb2e5
-  highlight User5 guifg=#000000 guibg=#5a90b9
-  highlight User6 guifg=#000000 guibg=#7e8aa2
-  highlight User7 guifg=#000000 guibg=#7b9c9c
-  highlight User8 guifg=#000000 guibg=#89ba63
-  highlight User9 guifg=#000000 guibg=#5b8484
-  highlight User0 guifg=#000000 guibg=#7b9c9c
+  highlight User1 guifg=#000000 guibg=#808080 ctermfg=16 ctermbg=12
+  highlight User2 guifg=#000000 guibg=#7fb2e5 ctermfg=16 ctermbg=12
+  highlight User3 guifg=#000000 guibg=#7aa6c7 ctermfg=16 ctermbg=12
+  highlight User4 guifg=#000000 guibg=#7fb2e5 ctermfg=16 ctermbg=12
+  highlight User5 guifg=#000000 guibg=#5a90b9 ctermfg=16 ctermbg=12
+  highlight User6 guifg=#000000 guibg=#7e8aa2 ctermfg=16 ctermbg=12
+  highlight User7 guifg=#000000 guibg=#7b9c9c ctermfg=16 ctermbg=12
+  highlight User8 guifg=#000000 guibg=#89ba63 ctermfg=16 ctermbg=12
+  highlight User9 guifg=#000000 guibg=#5b8484 ctermfg=16 ctermbg=12
+  highlight User0 guifg=#000000 guibg=#7b9c9c ctermfg=16 ctermbg=12
 
   highlight Search1 guibg=#FF0000
   highlight Search2 guibg=#FF7700
@@ -307,7 +326,7 @@ function! PostColorscheme()
   " Highlights (do this after loading colors)
   highlight clear    SpellBad
   highlight SpellBad gui=undercurl guisp=red cterm=underline
-  highlight Search   guibg=Yellow  guifg=Black
+  highlight Search   guibg=Yellow  guifg=Black ctermfg=Black ctermbg=Yellow
   highlight Comment  gui=italic
 
   " Status line
