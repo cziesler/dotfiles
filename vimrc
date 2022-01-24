@@ -1,6 +1,11 @@
 "-------------------------------------------------------------------------------
 " Filename: .vimrc
 " Author:   Cody Cziesler
+"
+" https://github.com/tpope/vim-pathogen
+" https://github.com/vim-scripts/Mark--Karkat
+" https://github.com/junegunn/vim-easy-align
+" https://github.com/mhinz/vim-signify
 "-------------------------------------------------------------------------------
 
 "-------------------------------------------------------------------------------
