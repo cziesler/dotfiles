@@ -8,4 +8,4 @@ Execution
 
 To create all of the simlinks, run the following command:
 
-    ./make_sim_links.sh
+    ./do_stow

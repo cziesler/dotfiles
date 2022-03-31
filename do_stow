@@ -1,0 +1,6 @@
+#!/bin/sh
+
+stow --target=$HOME bash
+stow --target=$HOME csh
+stow --target=$HOME vim
+stow --target=$HOME zsh
