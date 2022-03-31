@@ -2,5 +2,6 @@
 
 stow --target=$HOME bash
 stow --target=$HOME csh
+stow --target=$HOME scripts
 stow --target=$HOME vim
 stow --target=$HOME zsh
