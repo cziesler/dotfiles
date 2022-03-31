@@ -1,5 +1,1 @@
-vim/backup
-vim/undo
-*.swp
-vim/.netrwhist
-vim/spell
+.DS_Store

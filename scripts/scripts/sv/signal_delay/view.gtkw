@@ -1,0 +1,24 @@
+[*]
+[*] GTKWave Analyzer v3.3.107 (w)1999-2020 BSI
+[*] Thu Jan 27 01:51:32 2022
+[*]
+[dumpfile] "/Users/cody.cziesler/Scripts/sv/signal_delay/dly.vcd"
+[dumpfile_mtime] "Thu Jan 27 01:49:19 2022"
+[dumpfile_size] 936
+[savefile] "/Users/cody.cziesler/Scripts/sv/signal_delay/view.gtkw"
+[timestart] 0
+[size] 994 297
+[pos] -1 -1
+*-5.672382 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] tb.
+[sst_width] 193
+[signals_width] 98
+[sst_expanded] 1
+[sst_vpaned_height] 60
+@28
+tb.clk
+tb.sig
+tb.sig_dly0
+tb.sig_dly1
+[pattern_trace] 1
+[pattern_trace] 0

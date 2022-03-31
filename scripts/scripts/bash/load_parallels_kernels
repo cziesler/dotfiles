@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# load the kernel extensions for parallel desktops
+
+echo "Make sure to run this with sudo"
+
+cd /Applications/Parallels\ Desktop.app/Contents/Library/Extensions/10.6
+
+kextutil prl_hypervisor.kext
+kextutil prl_vnic.kext
+kextutil prl_hid_hook.kext
+kextutil -d ./prl_hypervisor.kext prl_netbridge.kext
+kextutil prl_usb_connect.kext
+
+echo "Done!"

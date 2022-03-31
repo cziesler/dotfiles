@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# flatten_pdf input
+
+pdf2ps $1.pdf temp.ps
+ps2pdf temp.ps $1_flat.pdf
+rm temp.ps
