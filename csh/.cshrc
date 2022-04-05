@@ -103,7 +103,7 @@ if ($?prompt) then
   #-----------------------------------------------
   # Source additional files
   #-----------------------------------------------
-  foreach i (~/.complete ~/.cshaliases ~/.path)
+  foreach i (~/.complete ~/.cshaliases ~/.path ~/.cshrc.local)
     if (-e $i) then
       if ($?DEBUG) echo "  ... loading $i"
       source $i
