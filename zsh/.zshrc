@@ -41,4 +41,7 @@ PERL_MM_OPT="INSTALL_BASE=/Users/cody.cziesler/perl5"; export PERL_MM_OPT;
 # For gtkwave
 alias gtkwave="/Applications/gtkwave.app/Contents/Resources/bin/gtkwave"
 
+# Dropbox folder
+export DROPBOX="./Library/CloudStorage/Dropbox/"
+
 echo "Sourced ~/.zshrc"
