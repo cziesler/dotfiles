@@ -58,7 +58,9 @@ complete svn \
 #-------------------------------------------------
 # ssh
 #-------------------------------------------------
-set hosts=(`cat ~/.ssh/known_hosts | sed -e 's/,.*//' -e 's/ .*//'`)
-complete ssh 'p/1/$hosts/'
+if (-e ~/.ssh/known_hosts) then
+  set hosts=(`cat ~/.ssh/known_hosts | sed -e 's/,.*//' -e 's/ .*//'`)
+  complete ssh 'p/1/$hosts/'
+endif
 
 if ($?DEBUG) echo "  ... done loading .complete"

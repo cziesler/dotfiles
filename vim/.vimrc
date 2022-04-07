@@ -8,6 +8,9 @@
 " https://github.com/mhinz/vim-signify
 "-------------------------------------------------------------------------------
 
+" To allow for unicode
+scriptencoding utf-8
+
 "-------------------------------------------------------------------------------
 " Leader key (comma)
 "-------------------------------------------------------------------------------
@@ -50,7 +53,7 @@ if has("gui_running")
   set lines=50 columns=100
 
   " Find a font that works
-  for i in ['Pointfree\ 6', 'Pointfree:h6', 'Menlo\ Regular:h6']
+  for i in ['Pointfree\ 8', 'Pointfree:h8', 'Menlo\ Regular:h8', 'Monospace:h8']
     silent! execute 'set guifont=' . i
     let i = substitute(i, "\\", "", "g")
     if &guifont == i
@@ -66,7 +69,7 @@ else
     let &t_8f = "\<Esc>[38:2:%lu:%lu:%lum"
     let &t_8b = "\<Esc>[48:2:%lu:%lu:%lum"
 
-    silent! colorscheme default
+    silent! colorscheme dracula
   else
     set t_Co=256
 
